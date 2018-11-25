@@ -11,19 +11,19 @@ const io = require('socket.io')(http);
 // Configuration.
 server.use(sassMiddleware({
   debug: false,
-  dest: 'public/css',
+  dest: 'frontend/css',
   force: true,
   outputStyle: 'compressed',
   prefix: '/css',
   root: __dirname,
   sourceMap: true,
-  src: 'public/scss'
+  src: 'frontend/scss'
 }));
-server.use(express.static(__dirname + '/public'));
+server.use(express.static(__dirname + '/frontend'));
 
 // Serve index.html
 server.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, '/public/index.html'));
+  response.sendFile(path.join(__dirname, '/frontend/index.html'));
 });
 
 // Handle socket.io connections
