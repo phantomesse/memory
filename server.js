@@ -8,6 +8,8 @@ const server = express();
 const http = require('http').Server(server);
 const io = require('socket.io')(http);
 
+const playerDatabase = require('./backend/player-database.js');
+
 // Configuration.
 server.use(sassMiddleware({
   debug: false,
@@ -28,10 +30,11 @@ server.get('/', function(request, response) {
 
 // Handle socket.io connections
 io.on('connection', function(socket) {
-  console.log('a user connected');
+  const player = playerDatabase.addPlayer();
+  console.log(`${player.name} connected`);
 
   socket.on('disconnect', function() {
-    console.log('user disconnected');
+    console.log(`${player.name} disconnected`);
   });
 });
 

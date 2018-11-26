@@ -2,7 +2,9 @@
 
 // Data structure representing a player.
 class Player {
-  constructor() {
+  constructor(name) {
     this.name = name;
   }
 }
+
+module.exports = Player;
